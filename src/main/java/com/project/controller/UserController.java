@@ -21,7 +21,7 @@ public class UserController {
         return user.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.findAll());
     }
@@ -31,6 +31,19 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.saveUser(user));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(
+            @PathVariable Long id,
+            @RequestBody User userDetails) {
+        User updatedUser = userService.updateUser(id, userDetails);
+        return ResponseEntity.ok(updatedUser);
+    }
+
 
 
 }
