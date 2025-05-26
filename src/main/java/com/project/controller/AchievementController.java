@@ -1,13 +1,12 @@
-package controller;
+package com.project.controller;
 
-import model.Achievement;
+import com.project.model.Achievement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
-import service.AchievementService;
+import com.project.service.AchievementService;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/achievements")
 @RequiredArgsConstructor
@@ -19,8 +18,22 @@ public class AchievementController {
         return ResponseEntity.ok(achievementService.getAllAchievements());
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Achievement> addAchievement(@RequestBody Achievement achievement) {
         return ResponseEntity.ok(achievementService.saveAchievement(achievement));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Achievement> updateAchievement(
+            @PathVariable Long id,
+            @RequestBody Achievement achievementDetails) {
+        Achievement updatedAchievement = achievementService.updateAchievement(id, achievementDetails);
+        return ResponseEntity.ok(updatedAchievement);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAchievement(@PathVariable Long id) {
+        achievementService.deleteAchievement(id);
+        return ResponseEntity.noContent().build();
     }
 }

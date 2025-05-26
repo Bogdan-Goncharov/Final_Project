@@ -1,6 +1,6 @@
-package repository;
+package com.project.repository;
 
-import model.Achievement;
+import com.project.model.Achievement;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

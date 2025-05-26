@@ -1,10 +1,10 @@
-package service;
+package com.project.service;
 
 import lombok.RequiredArgsConstructor;
-import model.PlayerStats;
-import model.User;
+import com.project.model.PlayerStats;
+import com.project.model.User;
 import org.springframework.stereotype.Service;
-import repository.PlayerStatsRepository;
+import com.project.repository.PlayerStatsRepository;
 
 import java.util.Optional;
 

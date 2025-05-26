@@ -1,16 +1,16 @@
-package controller;
+package com.project.controller;
 
-import model.PlayerStats;
-import model.User;
+import com.project.model.PlayerStats;
+import com.project.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
-import service.PlayerStatsService;
+import com.project.service.PlayerStatsService;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/players/stats")
+@RequestMapping("/player/stats")
 @RequiredArgsConstructor
 public class PlayerStatsController {
     private final PlayerStatsService playerStatsService;

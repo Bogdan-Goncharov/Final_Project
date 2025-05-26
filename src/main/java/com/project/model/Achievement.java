@@ -1,5 +1,4 @@
-package model;
-
+package com.project.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,16 +7,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "player_stats")
+@Table(name = "achievements")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlayerStats {
+public class Achievement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int totalPoints;
-    private int totalAchievements;
-    private int ranking;
+    @Column(nullable = false)
+    private String title;
+    @Column(nullable = false)
+    private String description;
+    @Column(nullable = false)
+    private int points;
 }
