@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import com.project.model.PlayerStats;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class PlayerStatsController {
     @PutMapping("/{userId}")
     public ResponseEntity<PlayerStats> updatePlayerStats(
             @PathVariable Long userId,
-            @RequestBody PlayerStats playerStatsDetails) {
+           @Valid @RequestBody PlayerStats playerStatsDetails) {
         PlayerStats updatedStats = playerStatsService.updatePlayerStats(userId, playerStatsDetails);
         return ResponseEntity.ok(updatedStats);
     }
