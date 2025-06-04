@@ -1,13 +1,15 @@
+// src/main/java/com/project/service/UserService.java
 package com.project.service;
-
 
 import com.project.model.PlayerStats;
 import com.project.model.User;
+import com.project.model.Role; // Импорт Role
 import com.project.repository.PlayerStatsRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import com.project.repository.UserRepository;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +18,7 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final PlayerStatsRepository playerStatsRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -27,8 +30,12 @@ public class UserService {
 
     public User saveUser(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            throw new RuntimeException("User with this name already exists");
+            throw new RuntimeException("Пользователь с таким именем уже существует");
         }
+
+        user.setRoles(Collections.singleton(Role.USER));
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User savedUser = userRepository.save(user);
 
@@ -49,10 +56,12 @@ public class UserService {
 
     public User updateUser(Long id, User userDetails) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found for id: " + id));
+                .orElseThrow(() -> new RuntimeException("Пользователь не найден для идентификатора: " + id));
         user.setUsername(userDetails.getUsername());
         user.setEmail(userDetails.getEmail());
-        user.setPassword(userDetails.getPassword());
+        if (userDetails.getPassword() != null && !userDetails.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
+        }
         return userRepository.save(user);
     }
 
