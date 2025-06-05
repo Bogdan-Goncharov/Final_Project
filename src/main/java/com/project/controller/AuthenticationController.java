@@ -4,6 +4,9 @@ import com.project.model.dto.AuthenticationRequest;
 import com.project.model.dto.AuthenticationResponse;
 import com.project.security.JwtUtil;
 import com.project.service.MyUserDetailsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,11 @@ public class AuthenticationController {
     private final JwtUtil jwtUtil;
 
     @PostMapping("/authenticate")
+    @Operation(summary = "Authenticate user", description = "Authenticate and get JWT token")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Authentication successful"),
+            @ApiResponse(responseCode = "400", description = "Invalid credentials")
+    })
     public ResponseEntity<?> createAuthenticationToken(@Valid @RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         try {
             authenticationManager.authenticate(

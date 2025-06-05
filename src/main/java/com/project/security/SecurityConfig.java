@@ -50,18 +50,18 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/authenticate", "/users/register").permitAll() // Разрешаем регистрацию и аутентификацию всем
-                        // Ограничения для AchievementController
+                        .requestMatchers("/authenticate", "/users/register").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.GET, "/achievements").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/achievements").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/achievements/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/achievements/**").hasRole("ADMIN")
-                        // Ограничения для PlayerStatsController
                         .requestMatchers(HttpMethod.GET, "/player/stats/{userId}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/player/stats/{userId}").hasRole("ADMIN")
-                        // Ограничения для UserController
                         .requestMatchers(HttpMethod.GET, "/user/{username}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/user/").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
