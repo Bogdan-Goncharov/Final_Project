@@ -19,15 +19,6 @@ CREATE TABLE achievements (
 );
 
 
-CREATE TABLE user_achievements (
-                                   id SERIAL PRIMARY KEY,
-                                   user_id BIGINT NOT NULL,
-                                   achievement_id BIGINT NOT NULL,
-                                   date_achieved TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                                   PRIMARY KEY (user_id, achievement_id),
-                                   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-                                   FOREIGN KEY (achievement_id) REFERENCES achievements(id) ON DELETE CASCADE
-);
 CREATE TABLE player_stats (
                               id SERIAL PRIMARY KEY,
                               user_id BIGINT NOT NULL UNIQUE,
