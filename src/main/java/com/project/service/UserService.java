@@ -1,7 +1,9 @@
+// src/main/java/com/project/service/UserService.java
 package com.project.service;
+
 import com.project.model.PlayerStats;
 import com.project.model.User;
-import com.project.model.Role;
+import com.project.model.Role; // Импорт Role
 import com.project.repository.PlayerStatsRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,7 @@ public class UserService {
 
     public User saveUser(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            throw new RuntimeException("A user with this name already exists");
+            throw new RuntimeException("Пользователь с таким именем уже существует");
         }
 
         user.setRoles(Collections.singleton(Role.USER));
@@ -54,7 +56,7 @@ public class UserService {
 
     public User updateUser(Long id, User userDetails) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found for ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Пользователь не найден для идентификатора: " + id));
         user.setUsername(userDetails.getUsername());
         user.setEmail(userDetails.getEmail());
         if (userDetails.getPassword() != null && !userDetails.getPassword().isEmpty()) {

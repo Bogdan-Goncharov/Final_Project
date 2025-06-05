@@ -14,8 +14,7 @@ public class PerformanceAspect {
 
 
     @Around("execution(public * com.project.service.*.*(..))")
-    public Object measureExecutionTime(ProceedingJoinPoint joinPoint)
-            throws Throwable {
+    public Object measureExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         Object result = joinPoint.proceed();
         long duration = System.currentTimeMillis() - start;

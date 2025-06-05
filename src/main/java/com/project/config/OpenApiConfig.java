@@ -14,6 +14,6 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("Project API")
                         .version("1.0")
-                        .description("REST API documentation for the project"));
+                        .description("Документация REST API для проекта"));
     }
 }

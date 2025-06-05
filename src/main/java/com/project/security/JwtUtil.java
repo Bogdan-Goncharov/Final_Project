@@ -1,3 +1,4 @@
+// src/main/java/com/project/security/JwtUtil.java
 package com.project.security;
 
 import io.jsonwebtoken.Claims;
@@ -15,7 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.stream.Collectors; // Импорт для работы со Stream API
 
 @Component
 public class JwtUtil {
