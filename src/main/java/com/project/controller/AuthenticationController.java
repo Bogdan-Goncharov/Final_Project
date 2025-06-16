@@ -1,5 +1,6 @@
 package com.project.controller;
 
+
 import com.project.model.dto.AuthenticationRequest;
 import com.project.model.dto.AuthenticationResponse;
 import com.project.security.JwtUtil;
@@ -10,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,6 +28,7 @@ public class AuthenticationController {
     private final MyUserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
 
+    @PreAuthorize("permitAll()")
     @PostMapping("/authenticate")
     @Operation(summary = "Authenticate user", description = "Authenticate and get JWT token")
     @ApiResponses({
@@ -38,7 +41,7 @@ public class AuthenticationController {
                     new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
             );
         } catch (BadCredentialsException e) {
-            throw new Exception("Неправильное имя пользователя или пароль", e);
+            throw new Exception("Incorrect username or password", e);
         }
 
         final UserDetails userDetails = userDetailsService

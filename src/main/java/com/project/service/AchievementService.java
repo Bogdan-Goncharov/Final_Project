@@ -1,6 +1,7 @@
 package com.project.service;
 
 
+import com.project.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import com.project.model.Achievement;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,8 @@ public class AchievementService {
     }
 
     public void deleteAchievement(Long id) {
-        achievementRepository.deleteById(id);
+        if (!achievementRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Achievement not found for id: " + id);
+        }
     }
 }

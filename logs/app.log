@@ -1,0 +1,14 @@
+2025-06-16 15:16:53 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-16 15:16:53 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-16 15:16:53 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-06-16 15:16:53 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-16 15:16:54 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 531 ms
+2025-06-16 15:16:54 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-16 15:16:54 INFO  com.project.aop.LoggingAspect - Method call: AchievementService.deleteAchievement(..) with arguments: [4]
+2025-06-16 15:16:54 ERROR com.project.aop.LoggingAspect - Method AchievementService.deleteAchievement(..) threw an exception: Achievement not found for id: 4
+2025-06-16 15:16:54 WARN  c.p.exception.GlobalExceptionHandler - Resource not found: Achievement not found for id: 4
+2025-06-16 15:17:34 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-16 15:17:34 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-16 15:17:34 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-16 15:17:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-16 15:17:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

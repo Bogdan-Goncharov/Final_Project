@@ -5,10 +5,11 @@ import com.project.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod; // Импорт HttpMethod
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -20,6 +21,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
+
 public class SecurityConfig {
 
     @Autowired
@@ -54,18 +57,18 @@ public class SecurityConfig {
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/authenticate", "/users/register").permitAll()
+                        .requestMatchers("/authenticate", "/user").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.GET, "/achievements").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/achievements").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/achievements/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/achievements/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/player/stats/{userId}").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/player/stats/{userId}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/user/{username}").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/user/stats/{userId}").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/user/stats/{userId}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/user/{username}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/user/").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/user/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/user/{id}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/user/{id}").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
