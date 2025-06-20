@@ -1,14 +1,161 @@
-2025-06-16 15:16:53 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-06-16 15:16:53 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-06-16 15:16:53 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2025-06-16 15:16:53 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
-2025-06-16 15:16:54 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 531 ms
-2025-06-16 15:16:54 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
-2025-06-16 15:16:54 INFO  com.project.aop.LoggingAspect - Method call: AchievementService.deleteAchievement(..) with arguments: [4]
-2025-06-16 15:16:54 ERROR com.project.aop.LoggingAspect - Method AchievementService.deleteAchievement(..) threw an exception: Achievement not found for id: 4
-2025-06-16 15:16:54 WARN  c.p.exception.GlobalExceptionHandler - Resource not found: Achievement not found for id: 4
-2025-06-16 15:17:34 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-06-16 15:17:34 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-06-16 15:17:34 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-06-16 15:17:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2025-06-16 15:17:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-20 13:48:16 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-20 13:48:16 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 17 ms
+2025-06-20 13:48:16 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-20 13:48:16 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-20 13:48:16 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 9 ms
+2025-06-20 13:48:16 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-20 13:48:25 ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+io.jsonwebtoken.MalformedJwtException: JWT strings must contain exactly 2 period characters. Found: 4
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:275)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:529)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:589)
+	at io.jsonwebtoken.impl.ImmutableJwtParser.parseClaimsJws(ImmutableJwtParser.java:173)
+	at com.project.security.JwtUtil.extractAllClaims(JwtUtil.java:43)
+	at com.project.security.JwtUtil.extractClaim(JwtUtil.java:38)
+	at com.project.security.JwtUtil.extractUsername(JwtUtil.java:30)
+	at com.project.security.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:38)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-06-20 13:48:59 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-20 13:48:59 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-20 13:48:59 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-20 13:48:59 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-20 13:48:59 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-20 13:49:02 INFO  com.project.FinalProjectApplication - Starting FinalProjectApplication using Java 21.0.5 with PID 8588 (C:\Users\user.WIN-KLKMDAT4B5D\IdeaProjects\Final_Project\target\classes started by user in C:\Users\user.WIN-KLKMDAT4B5D\IdeaProjects\Final_Project)
+2025-06-20 13:49:02 INFO  com.project.FinalProjectApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-20 13:49:03 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-20 13:49:03 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 118 ms. Found 3 JPA repository interfaces.
+2025-06-20 13:49:05 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8083 (http)
+2025-06-20 13:49:05 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-20 13:49:05 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-20 13:49:05 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-20 13:49:05 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2728 ms
+2025-06-20 13:49:05 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-20 13:49:05 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6f3b13d0
+2025-06-20 13:49:05 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-20 13:49:06 INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:8080/db_final (PostgreSQL 16.6)
+2025-06-20 13:49:06 INFO  o.f.core.internal.command.DbValidate - Successfully validated 2 migrations (execution time 00:00.088s)
+2025-06-20 13:49:06 INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2025-06-20 13:49:06 INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2025-06-20 13:49:06 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-20 13:49:06 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-06-20 13:49:06 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-20 13:49:06 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-20 13:49:07 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-20 13:49:08 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-20 13:49:08 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-20 13:49:09 INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name daoAuthenticationProvider
+2025-06-20 13:49:09 WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-06-20 13:49:09 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-20 13:49:10 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-20 13:49:12 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8083 (http) with context path '/'
+2025-06-20 13:49:12 INFO  com.project.FinalProjectApplication - Started FinalProjectApplication in 10.387 seconds (process running for 11.391)
+2025-06-20 13:49:22 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-20 13:49:22 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-20 13:49:22 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-06-20 13:49:22 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-20 13:49:22 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 279 ms
+2025-06-20 13:49:22 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-20 13:49:23 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-20 13:49:23 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 6 ms
+2025-06-20 13:49:23 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-20 13:49:39 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-20 13:49:39 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 91 ms
+2025-06-20 13:49:39 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-20 13:49:39 INFO  com.project.aop.LoggingAspect - Method call: UserService.deleteUser(..) with arguments: [46]
+2025-06-20 13:49:40 ERROR com.project.aop.LoggingAspect - Method UserService.deleteUser(..) threw an exception: User not found with id: 46
+2025-06-20 13:49:40 WARN  c.p.exception.GlobalExceptionHandler - Resource not found: User not found with id: 46
+2025-06-20 13:49:49 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-20 13:49:49 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 10 ms
+2025-06-20 13:49:49 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-20 13:49:49 INFO  com.project.aop.LoggingAspect - Method call: UserService.deleteUser(..) with arguments: [43]
+2025-06-20 13:49:49 INFO  com.project.aop.PerformanceAspect - Method UserService.deleteUser(..) completed in 138 ms
+2025-06-20 13:49:49 INFO  com.project.aop.LoggingAspect - Method UserService.deleteUser(..) completed successfully. Result: null
+2025-06-20 13:49:52 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-20 13:49:52 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 15 ms
+2025-06-20 13:49:52 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-20 13:49:52 INFO  com.project.aop.LoggingAspect - Method call: UserService.deleteUser(..) with arguments: [43]
+2025-06-20 13:49:52 ERROR com.project.aop.LoggingAspect - Method UserService.deleteUser(..) threw an exception: User not found with id: 43
+2025-06-20 13:49:52 WARN  c.p.exception.GlobalExceptionHandler - Resource not found: User not found with id: 43
+2025-06-20 13:50:05 INFO  com.project.aop.LoggingAspect - Method call: UserService.saveUser(..) with arguments: [User(userId=null, username=qwey, password=newpassword, email=donw5@example.com, playerStats=null, roles=[], achievements=[])]
+2025-06-20 13:50:05 INFO  com.project.aop.PerformanceAspect - Method UserService.saveUser(..) completed in 292 ms
+2025-06-20 13:50:05 INFO  com.project.aop.LoggingAspect - Method UserService.saveUser(..) completed successfully. Result: User(userId=44, username=qwey, password=$2a$10$KtMdNghtbDDQNaE1uuyN1.xAQTz82Yu8LzGTMj1XPLez3agfEKRXi, email=donw5@example.com, playerStats=com.project.model.PlayerStats@296206f6, roles=[USER], achievements=[])
+2025-06-20 13:50:49 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-20 13:50:49 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 11 ms
+2025-06-20 13:50:49 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-20 13:50:49 INFO  com.project.aop.LoggingAspect - Method call: UserService.assignAdminRole(..) with arguments: [47]
+2025-06-20 13:50:49 ERROR com.project.aop.LoggingAspect - Method UserService.assignAdminRole(..) threw an exception: User not found with id: 47
+2025-06-20 13:50:49 WARN  c.p.exception.GlobalExceptionHandler - Resource not found: User not found with id: 47
+2025-06-20 13:51:01 INFO  com.project.aop.LoggingAspect - Method call: MyUserDetailsService.loadUserByUsername(..) with arguments: [admin]
+2025-06-20 13:51:01 INFO  com.project.aop.PerformanceAspect - Method MyUserDetailsService.loadUserByUsername(..) completed in 11 ms
+2025-06-20 13:51:01 INFO  com.project.aop.LoggingAspect - Method MyUserDetailsService.loadUserByUsername(..) completed successfully. Result: User(userId=13, username=admin, password=$2a$12$rMkDFfZ/CNkfoGwry3qrtuM4pT4W5n3zdtb2sBP3o6YQDoAdx5CQi, email=admin@example.com, playerStats=null, roles=[ADMIN], achievements=[])
+2025-06-20 13:51:01 INFO  com.project.aop.LoggingAspect - Method call: UserService.assignAdminRole(..) with arguments: [44]
+2025-06-20 13:51:02 INFO  com.project.aop.PerformanceAspect - Method UserService.assignAdminRole(..) completed in 4 ms
+2025-06-20 13:51:02 INFO  com.project.aop.LoggingAspect - Method UserService.assignAdminRole(..) completed successfully. Result: User(userId=44, username=qwey, password=$2a$10$KtMdNghtbDDQNaE1uuyN1.xAQTz82Yu8LzGTMj1XPLez3agfEKRXi, email=donw5@example.com, playerStats=com.project.model.PlayerStats@28417e4e, roles=[ADMIN], achievements=[])
+2025-06-20 13:56:53 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-20 13:56:53 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-20 13:56:53 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-20 13:56:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-20 13:56:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

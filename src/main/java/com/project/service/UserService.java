@@ -11,7 +11,7 @@ import com.project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.HashSet;
 import java.util.List;
@@ -35,17 +35,17 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    @Transactional
+
     public User saveUser(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new RuntimeException("User with this name already exists");
         }
 
 
-        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+        if (user.getRole() == null || user.getRole().isEmpty()) {
             Set<Role> roles = new HashSet<>();
             roles.add(Role.USER);
-            user.setRoles(roles);
+            user.setRole(roles);
         }
 
 
@@ -69,7 +69,7 @@ public class UserService {
         return savedUser;
     }
 
-    @Transactional
+
     public void deleteUser(Long id) {
         if (!userRepository.existsById(id)) {
             throw new ResourceNotFoundException("User not found with id: " + id);
@@ -78,9 +78,8 @@ public class UserService {
     }
 
 
-    @Transactional
     public User updateUser(Long id, User userDetails) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found for id: " + id));
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found for id: " + id));
         user.setUsername(userDetails.getUsername());
         user.setEmail(userDetails.getEmail());
 
@@ -90,11 +89,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    @Transactional
+
     public User addAchievementToUser(Long userId, Long achievementId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
-        Achievement achievement = achievementRepository.findById(achievementId).orElseThrow(() -> new RuntimeException("Achievement not found"));
+        Achievement achievement = achievementRepository.findById(achievementId).orElseThrow(() -> new ResourceNotFoundException("Achievement not found"));
 
         if (user.getAchievements().contains(achievement)) {
             throw new RuntimeException("The achievement has already been awarded to the user.");
@@ -105,13 +104,25 @@ public class UserService {
         userRepository.save(user);
 
 
-        PlayerStats stats = playerStatsRepository.findByUserId(userId).orElseThrow(() -> new RuntimeException("User statistics not found"));
+        PlayerStats stats = playerStatsRepository.findByUserId(userId).orElseThrow(() -> new ResourceNotFoundException("User statistics not found"));
 
         stats.setTotalAchievements(stats.getTotalAchievements() + 1);
         stats.setTotalPoints(stats.getTotalPoints() + achievement.getPoints());
 
         playerStatsRepository.save(stats);
 
+        return user;
+    }
+
+    public User assignAdminRole(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
+
+
+        Set<Role> roles = user.getRole();
+        roles.remove(Role.USER);
+        roles.add(Role.ADMIN);
+        user.setRole(roles);
         return user;
     }
 }

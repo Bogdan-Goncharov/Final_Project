@@ -97,11 +97,18 @@ DELETE /achievements/{id}
 Delete achievement by ID.
 
 Player Stats
-GET /player/stats/{userId}
+GET /user/stats/{userId}
 Get player stats by user ID.
 
-PUT /player/stats/{userId}
+PUT /user/stats/{userId}
 Update player stats by user ID.
+
+POST /user/{id}/assign-admin
+Assign ADMIN role to the user by ID.
+
+POST /user/{userId}/achievements/{achievementId}
+Assign achievement to the user by ID.
+
 
 # Exception Handling
 The API returns clear error responses for runtime errors and validation issues.
@@ -124,6 +131,15 @@ json
   },
   "status": 400
 }
+
+For not found errors:
+json
+{
+"error": "Not Found",
+"message": "Player with ID 42 not found",
+"path": "/user/42"
+}
+
 # Security
 JWT Authentication:
 Use /authenticate to get a token.

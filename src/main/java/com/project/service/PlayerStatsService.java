@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.project.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import com.project.model.PlayerStats;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class PlayerStatsService {
 
     public PlayerStats updatePlayerStats(Long userId, PlayerStats playerStatsDetails) {
         PlayerStats playerStats = playerStatsRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("PlayerStats not found for user_id: " + userId));
+                .orElseThrow(() -> new ResourceNotFoundException("PlayerStats not found for user_id: " + userId));
         playerStats.setTotalPoints(playerStatsDetails.getTotalPoints());
         playerStats.setTotalAchievements(playerStatsDetails.getTotalAchievements());
         playerStats.setRanking(playerStatsDetails.getRanking());

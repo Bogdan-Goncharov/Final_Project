@@ -24,7 +24,7 @@ public class AchievementService {
 
     public Achievement updateAchievement(Long id, Achievement achievementDetails) {
         Achievement achievement = achievementRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Achievement not found for id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Achievement not found for id: " + id));
         achievement.setTitle(achievementDetails.getTitle());
         achievement.setDescription(achievementDetails.getDescription());
         achievement.setPoints(achievementDetails.getPoints());

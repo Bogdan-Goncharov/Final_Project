@@ -75,14 +75,14 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> role = new HashSet<>();
 
     @JsonIgnore
     @Schema(description = "Set roles for users")
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (roles == null) return Collections.emptyList();
-        return roles.stream()
+        if (role == null) return Collections.emptyList();
+        return role.stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
                 .collect(Collectors.toSet());
     }

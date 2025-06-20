@@ -111,5 +111,20 @@ public class UserController {
         User updatedUser = userService.addAchievementToUser(userId, achievementId);
         return ResponseEntity.ok(updatedUser);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/assign-admin/{userId}")
+    @Operation(summary = "Assign ADMIN role to user", description = "Allows admin to assign ADMIN role to a user")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "ADMIN successfully added"),
+            @ApiResponse(responseCode = "403", description = "Access denied"),
+            @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<User> assignAdminRole(@PathVariable Long userId) {
+        User updatedUser = userService.assignAdminRole(userId);
+        return ResponseEntity.ok(updatedUser);
+    }
 }
+
 
